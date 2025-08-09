@@ -1,0 +1,43 @@
+<configuration>
+
+    <!-- 这个是我不想看到的日志，这里可以配置关闭，是类名 -->
+    <logger name="com.commonrail.mft.decoder.jsmanager.impl.JSLogManagerImpl" level="DEBUG"/>
+
+    <!-- 数据传输日志 -->
+    <logger name="com.commonrail.mft.decoder.managers.vci.VciManager" level="OFF"/>
+
+    <appender name="LOGCAT" class="ch.qos.logback.classic.android.LogcatAppender">
+        <tagEncoder>
+            <pattern>%logger{12}</pattern>
+        </tagEncoder>
+        <encoder>
+            <pattern>\(%F:%L\) [%thread] %m%n</pattern>
+        </encoder>
+        <encoder class="com.crs.devicecnnt.base.LLog">
+            <pattern>[%thread] %m%n%caller{2}%n</pattern>
+        </encoder>
+    </appender>
+
+<!--    LOG_DIR 是文件存储路径变量-->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <prudent>true</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/logs/%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>100MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] [%logger{36}:%L] - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+<!--    最大显示等级 -->
+    <root level="debug">
+        <appender-ref ref="LOGCAT" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>

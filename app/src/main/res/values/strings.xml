@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SodiumApp</string>
+    <string name="error_message_application_crash">程序发生了不可预期的问题，请导出日志联系开发工程师。</string>
+
+</resources>
