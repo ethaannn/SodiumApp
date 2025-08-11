@@ -1,5 +1,7 @@
 package com.ethan.sodium.app
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -38,6 +40,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ethan.sodium.app.common.log.ILoggerManager
+import com.ethan.sodium.app.common.log.ImplLoggerManager
 import com.ethan.sodium.ui.components.loading.SodiumLoading
 import com.ethan.sodium.app.ui.theme.SodiumAppTheme
 import com.ethan.sodium.ui.components.button.ButtonAttribute
@@ -50,6 +54,10 @@ import com.ethan.sodium.ui.theme.BackgroundSenaryColor
 import com.ethan.sodium.ui.theme.BackgroundTertiaryColor
 import com.ethan.sodium.ui.theme.ForegroundOctonaryColor
 import com.ethan.sodium.ui.theme.ForegroundSecondaryColor
+import org.koin.java.KoinJavaComponent.inject
+import org.slf4j.LoggerFactory
+import kotlin.getValue
+import kotlin.hashCode
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -118,6 +126,21 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(height = 20.dp))
         SodiumCustomButton(text = "MatchParent Button"){
             println("aaaaaaaaaa")
+        }
+        val mLogger = LoggerFactory.getLogger(LocalContext.current.javaClass)
+        val context = LocalContext.current
+        Button(onClick = {
+            val iLoggerManager: ILoggerManager = ImplLoggerManager(mContext = context)
+            mLogger.info("SLF4J::Greeting: iLoggerManager: ${iLoggerManager.hashCode()}")
+            val uri: Uri = iLoggerManager.zip()
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "application/zip"
+            intent.putExtra(Intent.EXTRA_STREAM, uri)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent)
+
+        },modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth()){
+            Text(text = "Click import logs")
         }
 
     }

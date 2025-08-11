@@ -1,11 +1,17 @@
 [versions]
+
 compileSdk ="36"
-targetSdk ="36"
 minSdk ="24"
+targetSdk ="36"
 versionCode = "1"
 versionName = "1.0.0"
+
+coil-compose = "2.7.0"
 agp = "8.11.1"
+ksp = "2.2.0-RC3-2.0.2"
+kapt = "2.2.0"
 kotlin = "2.2.0"
+kotlinx-serialization="1.9.0"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -13,27 +19,29 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.9.1"
 activityCompose = "1.10.1"
 composeBom = "2025.06.01"
-appcompat = "1.7.1"
+navigation-compose ="2.9.1"
+material-icons ="1.7.8"
 constraintlayout = "2.2.1"
-material = "1.12.0"
-compose-navigation ="2.9.1"
-coil-compose = "2.7.0"
+appcompat = "1.7.1"
+foundation ="1.8.3"
+startup-runtime = "1.1.1"
 
 # 三方库
+
+retrofit = "3.0.0"
+slf4j-api ="2.0.17"
+logback-android ="3.0.0"
+koin-version = "4.1.0"
 lunar = "1.7.4"
 pinyin = "0.4.0"
 reorderable = "0.9.6"
-retrofit = "3.0.0"
 mlkit = "17.3.0"
 zxing-core = "3.5.3"
-
-slf4j-api ="2.0.17"
-logback-android ="3.0.0"
+moshi = "1.15.2"
+moshi-retrofit-converter = "3.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -45,31 +53,57 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-androidx-navigation = { group ="androidx.navigation",name="navigation-compose",version.ref ="compose-navigation"}
+androidx-navigation = { group ="androidx.navigation",name="navigation-compose",version.ref ="navigation-compose"}
+androidx-material-icons = { group ="androidx.compose.material",name="material-icons-extended",version.ref ="material-icons"}
+androidx-foundation={ group = "androidx.compose.foundation",name = "foundation",version.ref ="foundation"}
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-
-
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+androidx-startup-runtime = {group ="androidx.startup",name ="startup-runtime",version.ref="startup-runtime"}
 # 三方库
-
-slf4j-api ={ group ="org.slf4j",name="slf4j-api",version.ref ="slf4j-api"}
-logback-android = { group ="com.github.tony19",name="logback-android",version.ref ="logback-android"}
-
 lunar = { module = "cn.6tail:lunar", version.ref = "lunar" } # 计算农历日期与节日
-coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil-compose" } # 支持异步加载图片
 pinyin = { module = "com.github.houbb:pinyin", version.ref = "pinyin" } # 汉字转拼音
 reorderable = { module = "org.burnoutcrew.composereorderable:reorderable", version.ref = "reorderable" } # 支持拖拽排序
-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" } # 网络请求库
-retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" } # 支持网络响应结果转为指定类对象
 amap = { module = "com.amap.api:3dmap-location-search", version = "latest.integration" } # 高德地图
 zxing-core = { module = "com.google.zxing:core", version.ref = "zxing-core" } # 二维码生成/识别（效率低）
 mlkit-barcode-scanning = { module = "com.google.mlkit:barcode-scanning", version.ref = "mlkit" } # 二维码识别（基于机器学习）
+# commons
+commons-io = 'commons-io:commons-io:2.16.1'
+commons-lang = 'org.apache.commons:commons-lang3:3.18.0'
+commons-compress ='org.apache.commons:commons-compress:1.21'
+
+slf4j-api ={ group ="org.slf4j",name="slf4j-api",version.ref ="slf4j-api"}
+logback-android = { group ="com.github.tony19",name="logback-android",version.ref ="logback-android"}
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" } # 网络请求库
+retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" } # 支持网络响应结果转为指定类对象
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil-compose" } # 支持异步加载图片
+
+# Koin for Android
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin-version" }
+# Koin for Compose
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin-version" }
+
+
+
+
+moshi = { group ="com.squareup.moshi",name = "moshi", version.ref = "moshi"}
+# Kotlin 项目需要添加 使用反射
+moshi-kotlin = { group ="com.squareup.moshi",name = "moshi-kotlin", version.ref = "moshi"}
+# 如果需要代码生成（推荐，减少反射使用）或者对于 Kotlin DSL 需要使用kapt或ksp
+moshi-kotlin-codegen ={group ="com.squareup.moshi",name = "moshi-kotlin-codegen", version.ref = "moshi"}
+# 如果使用 Retrofit，添加转换器
+moshi-retrofit2-converter={group = "com.squareup.retrofit2",name="converter-moshi",version.ref="moshi-retrofit-converter"}
+
 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kapt" }
 

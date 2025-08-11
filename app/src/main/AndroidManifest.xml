@@ -12,6 +12,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SodiumApp">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.providers.file"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/shared_paths" />
+
+        </provider>
+
+        <provider
+            android:authorities="${applicationId}.androidx-startup"
+            android:name="androidx.startup.InitializationProvider"
+            android:exported="false"
+            tools:node="merge">
+
+            <meta-data
+                android:name="com.ethan.sodium.app.initializer.KoinInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.ethan.sodium.app.initializer.LogBackInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -22,8 +25,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -36,15 +38,16 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true  // 明确启用 BuildConfig 生成
         compose = true
         viewBinding = true
     }
 }
 
 dependencies {
+    implementation(project(":compose-ui"))
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.appcompat)
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(platform(libs.androidx.compose.bom))
@@ -60,9 +63,17 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-
+    implementation(libs.commons.io)
+    implementation(libs.commons.lang)
+    implementation(libs.commons.compress)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.kotlinx.serialization)
+    implementation(libs.androidx.startup.runtime)
     implementation(libs.slf4j.api)
     implementation(libs.logback.android)
+    implementation(libs.moshi)
+    implementation(libs.moshi.retrofit2.converter)
+    ksp(libs.moshi.kotlin.codegen)
 
-    implementation(project(":compose-ui"))
 }

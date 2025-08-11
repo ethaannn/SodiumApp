@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import com.ethan.composer.common.log.ImplLoggerManager
+import com.ethan.sodium.app.common.log.ImplLoggerManager
 import com.ethan.sodium.app.R
 import com.ethan.sodium.app.common.toast.FactoryToast
 import com.ethan.sodium.app.common.toast.Toast
