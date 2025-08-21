@@ -35,8 +35,8 @@ abstract class ApplicationBaseCore : Application(), Thread.UncaughtExceptionHand
                 try {
                     Looper.loop()
                 } catch (e: Throwable) {
-                    FactoryToast.makeText(baseContext, getString(R.string.error_message_application_crash), Toast.LENGTH_LONG).show()
-                    mLogger.error("LOG:ApplicationPen:attachBaseContext", e)
+                    FactoryToast.makeText(baseContext, text = getString(R.string.error_message_application_crash), Toast.LENGTH_LONG).show()
+                    mLogger.error("SLF4J:ApplicationPen:attachBaseContext", e)
                 }
             }
         }
@@ -47,12 +47,12 @@ abstract class ApplicationBaseCore : Application(), Thread.UncaughtExceptionHand
         super.onCreate()
         instance = this
         runBlocking { mLoggerManager.init() }
-        CoroutineScope(Dispatchers.Main).launch { initComponent() }
+        CoroutineScope(context=Dispatchers.Main).launch { initComponent() }
     }
      abstract fun initComponent()
 
     override fun uncaughtException(t: Thread, e: Throwable) {
-        mLogger.error("LOG:App:uncaughtException t={}", t, e)
+        mLogger.error("SLF4J:App:uncaughtException t={}", t, e)
     }
 
 }

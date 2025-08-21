@@ -7,7 +7,7 @@ versionCode = "1"
 versionName = "1.0.0"
 
 coil-compose = "2.7.0"
-agp = "8.11.1"
+agp = "8.8.2"
 ksp = "2.2.0-RC3-2.0.2"
 kapt = "2.2.0"
 kotlin = "2.2.0"
@@ -37,6 +37,8 @@ pinyin = "0.4.0"
 reorderable = "0.9.6"
 mlkit = "17.3.0"
 zxing-core = "3.5.3"
+
+okhttp="4.10.0"
 moshi = "1.15.2"
 moshi-retrofit-converter = "3.0.0"
 
@@ -53,9 +55,9 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
-androidx-navigation = { group ="androidx.navigation",name="navigation-compose",version.ref ="navigation-compose"}
-androidx-material-icons = { group ="androidx.compose.material",name="material-icons-extended",version.ref ="material-icons"}
-androidx-foundation={ group = "androidx.compose.foundation",name = "foundation",version.ref ="foundation"}
+androidx-compose-navigation = { group ="androidx.navigation",name="navigation-compose",version.ref ="navigation-compose"}
+androidx-compose-material-icons = { group ="androidx.compose.material",name="material-icons-extended",version.ref ="material-icons"}
+androidx-compose-foundation={ group = "androidx.compose.foundation",name = "foundation",version.ref ="foundation"}
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -76,17 +78,11 @@ commons-compress ='org.apache.commons:commons-compress:1.21'
 
 slf4j-api ={ group ="org.slf4j",name="slf4j-api",version.ref ="slf4j-api"}
 logback-android = { group ="com.github.tony19",name="logback-android",version.ref ="logback-android"}
-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" } # 网络请求库
-retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" } # 支持网络响应结果转为指定类对象
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil-compose" } # 支持异步加载图片
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" } # 网络请求库
 
-# Koin for Android
-koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin-version" }
-# Koin for Compose
-koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin-version" }
-
-
-
+okhttp={group ="com.squareup.okhttp3",name="okhttp",version.ref ="okhttp"}
+okhttp-logging-interceptor={group="com.squareup.okhttp3",name ="logging-interceptor",version.ref="okhttp"}
 
 moshi = { group ="com.squareup.moshi",name = "moshi", version.ref = "moshi"}
 # Kotlin 项目需要添加 使用反射
@@ -96,7 +92,12 @@ moshi-kotlin-codegen ={group ="com.squareup.moshi",name = "moshi-kotlin-codegen"
 # 如果使用 Retrofit，添加转换器
 moshi-retrofit2-converter={group = "com.squareup.retrofit2",name="converter-moshi",version.ref="moshi-retrofit-converter"}
 
+# Koin for Android
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin-version" }
+# Koin for Compose
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin-version" }
 
+gson-retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" } # 支持网络响应结果转为指定类对象
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

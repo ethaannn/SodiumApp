@@ -2,6 +2,7 @@ package com.ethan.sodium.app.initializer
 
 import android.content.Context
 import androidx.startup.Initializer
+import com.ethan.sodium.app.di.koinCommonModule
 import com.ethan.sodium.app.di.koinFactoryModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -14,7 +15,7 @@ class KoinInitializer: Initializer<Unit>{
         startKoin {
             androidLogger()
             androidContext(androidContext=context)
-            modules(koinFactoryModule)
+            modules(modules = arrayOf(koinFactoryModule,koinCommonModule))
             println("SLF4J:KoinInitializer:create:startKoin success")
         }
     }

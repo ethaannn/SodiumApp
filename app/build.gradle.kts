@@ -35,6 +35,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+        freeCompilerArgs = listOf("-XXLanguage:+PropertyParamAnnotationDefaultTargetMode")
     }
 
     buildFeatures {
@@ -46,6 +47,11 @@ android {
 
 dependencies {
     implementation(project(":compose-ui"))
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
@@ -56,13 +62,12 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    implementation(libs.androidx.compose.navigation)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+
     implementation(libs.commons.io)
     implementation(libs.commons.lang)
     implementation(libs.commons.compress)
@@ -74,6 +79,10 @@ dependencies {
     implementation(libs.logback.android)
     implementation(libs.moshi)
     implementation(libs.moshi.retrofit2.converter)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.retrofit)
+
     ksp(libs.moshi.kotlin.codegen)
 
 }
