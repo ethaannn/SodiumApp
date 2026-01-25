@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.ethan.sodium.app.ui.HomeScreen
 import com.ethan.sodium.app.ui.screen.MainScreen
 import com.ethan.sodium.app.ui.screen.MultiStateScreen
 import com.ethan.sodium.app.ui.screen.ShanHeScreen
@@ -16,7 +17,7 @@ fun AppNavHost(innerPadding: PaddingValues,navHostController: NavHostController)
 
     NavHost(
         navController = navHostController,
-        startDestination = AppDestination.MAIN_SCREEN,
+        startDestination = AppDestination.HOME_SCREEN,
         modifier = Modifier.padding(paddingValues = innerPadding)
     ){
         composable<AppDestination.MAIN_SCREEN> {
@@ -27,6 +28,9 @@ fun AppNavHost(innerPadding: PaddingValues,navHostController: NavHostController)
         }
         composable<AppDestination.SCREEN_MULTI_STATE> {
             MultiStateScreen()
+        }
+        composable<AppDestination.HOME_SCREEN> {
+            HomeScreen()
         }
 
     }

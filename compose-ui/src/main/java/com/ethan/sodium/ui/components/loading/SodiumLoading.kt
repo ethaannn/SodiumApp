@@ -41,9 +41,11 @@ fun SodiumLoading(){
 
 
 @Composable
-fun SodiumLoading(size: Dp = 16.dp, color: Color = Color.Unspecified,
+fun SodiumLoading(size: Dp = 16.dp,
+    color: Color = Color.Unspecified,
                   isRotating: Boolean = true,
-                  defaultResId: Int = R.drawable.sodium_loading, contentDescription: String="loading") {
+                  defaultResId: Int = R.drawable.sodium_loading,
+    contentDescription: String="loading") {
     val angle by if (isRotating) {
         val transition = rememberInfiniteTransition(label = "")
         transition.animateFloat(

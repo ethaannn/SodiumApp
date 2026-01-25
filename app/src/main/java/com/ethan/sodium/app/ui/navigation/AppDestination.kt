@@ -10,7 +10,9 @@ object AppDestination {
     @Serializable
     @Immutable
     object SplashScreen
-
+    @Serializable
+    @Immutable
+    object HOME_SCREEN
     /**
      * 主屏
      */

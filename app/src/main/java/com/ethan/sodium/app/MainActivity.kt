@@ -47,18 +47,11 @@ class MainActivity : ActivityBusinessBase() {
         setContent {
             val navController: NavHostController = rememberNavController()
             CompositionLocalProvider(
-                values = arrayOf(
-                    AppLocalProvider.LocalLogger provides mLogger,
-                    AppLocalProvider.LocalNavController provides navController
-                )
-            ) {
+                values = arrayOf(AppLocalProvider.LocalLogger provides mLogger,
+                                 AppLocalProvider.LocalNavController provides navController)) {
                 SodiumAppTheme {
-                    Scaffold(
-                        modifier = Modifier.fillMaxSize()
-                    ) { innerPadding: PaddingValues ->
-                        AppNavHost(
-                            innerPadding = innerPadding,
-                            navHostController = navController)
+                    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding: PaddingValues ->
+                        AppNavHost(innerPadding = innerPadding, navHostController = navController)
                     }
                 }
             }
@@ -71,64 +64,48 @@ class MainActivity : ActivityBusinessBase() {
         val user = User("1202613108", "Ethan")
         val json = moshi.toJson(any = user)
         mLogger.info("SLF4J:json: $json")
-        val user2 =moshi.fromJson<User>(json =  json)
+        val user2 = moshi.fromJson<User>(json = json)
         mLogger.info("SLF4J:json: $user2")
 
-
         val map: Map<String, Any> = mapOf("name" to "Ethan", "age" to 18)
-        val mapJson=moshi.toJson(map)
+        val mapJson = moshi.toJson(map)
         mLogger.info("SLF4J:map: $mapJson")
-        val jsonToMap:Map<String,Any >? =moshi.fromJson<Map<String, Any>>(mapJson)
+        val jsonToMap: Map<String, Any>? = moshi.fromJson<Map<String, Any>>(mapJson)
         mLogger.info("SLF4J:jsonToMap:age: ${jsonToMap?.javaClass?.name}")
     }
 }
 
 
+val BUTTON_PRIMARY = ButtonStateColors(containerColor = BackgroundOctonaryColor,
+                                       contentColor = ForegroundOctonaryColor,
+                                       containerPressColor = BackgroundOctonaryColor,
+                                       contentPressColor = ForegroundOctonaryColor,
+                                       containerDisableColor = BackgroundQuinaryColor,
+                                       contentDisableColor = ForegroundSecondaryColor)
+
+val BUTTON_SECONDARY = ButtonStateColors(containerColor = BackgroundQuaternaryColor,
+                                         contentColor = ForegroundSecondaryColor,
+                                         containerPressColor = BackgroundTertiaryColor,
+                                         contentPressColor = ForegroundSecondaryColor,
+                                         containerDisableColor = BackgroundQuaternaryColor,
+                                         contentDisableColor = ForegroundSecondaryColor)
 
 
-val BUTTON_PRIMARY = ButtonStateColors(
-    containerColor = BackgroundOctonaryColor,
-    contentColor = ForegroundOctonaryColor,
-    containerPressColor = BackgroundOctonaryColor,
-    contentPressColor = ForegroundOctonaryColor,
-    containerDisableColor = BackgroundQuinaryColor,
-    contentDisableColor = ForegroundSecondaryColor)
+val LARGE: ButtonAttribute = ButtonAttribute(padding = PaddingValues(vertical = 0.dp, horizontal = 0.dp),
+                                             borderRadius = 16.dp,
+                                             size = DpSize(184.dp, 36.dp),
+                                             indication = ripple(bounded = true,
+                                                                 radius = Dp.Unspecified,
+                                                                 color = Color.White),
+                                             fontSize = 14.sp)
 
-val BUTTON_SECONDARY =ButtonStateColors(
-    containerColor = BackgroundQuaternaryColor,
-    contentColor = ForegroundSecondaryColor,
-    containerPressColor = BackgroundTertiaryColor,
-    contentPressColor = ForegroundSecondaryColor,
-    containerDisableColor = BackgroundQuaternaryColor,
-    contentDisableColor = ForegroundSecondaryColor)
-
-
-
-val LARGE: ButtonAttribute = ButtonAttribute(
-    padding = PaddingValues(
-        vertical = 0.dp,
-        horizontal = 0.dp),
-    borderRadius = 16.dp,
-    size = DpSize(
-        184.dp,
-        36.dp),
-    indication = ripple(
-        bounded = true,
-        radius = Dp.Unspecified,
-        color = Color.White),
-    fontSize = 14.sp)
-
-val MEDIUM: ButtonAttribute = ButtonAttribute(padding = PaddingValues(vertical = 10.dp, horizontal = 24.dp), fontSize = 14.sp)
+val MEDIUM: ButtonAttribute =
+    ButtonAttribute(padding = PaddingValues(vertical = 10.dp, horizontal = 24.dp), fontSize = 14.sp)
 
 
 val SMALL: ButtonAttribute = ButtonAttribute(
-    padding = PaddingValues(
-        vertical = 6.dp,
-        horizontal = 12.dp),
+    padding = PaddingValues(vertical = 6.dp, horizontal = 12.dp),
     borderRadius = 6.dp,
     fontSize = 14.sp,
-    indication = ripple(
-        bounded = true,
-        radius = Dp.Unspecified,
-        color = BackgroundSenaryColor),
-)
+    indication = ripple(bounded = true, radius = Dp.Unspecified, color = BackgroundSenaryColor),
+                                            )
